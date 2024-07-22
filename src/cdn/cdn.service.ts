@@ -1,9 +1,12 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { CDN_MODULE_OPTIONS } from './constants';
 import { CdnModuleOptions } from './interfaces/cdn-module-options.interface';
-import { DeleteObjectCommand, S3Client } from '@aws-sdk/client-s3';
+import {
+  PutObjectCommand,
+  DeleteObjectCommand,
+  S3Client,
+} from '@aws-sdk/client-s3';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
-import { PutObjectCommand } from '@aws-sdk/client-s3';
 import { RequestPresigningArguments } from '@smithy/types';
 
 @Injectable()
