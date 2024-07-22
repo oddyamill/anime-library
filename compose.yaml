@@ -10,6 +10,7 @@ services:
       - .env
     ports:
       - 127.0.0.1:27880:27880
+      - 10.8.0.1:27880:27880
     depends_on:
       postgres:
         condition: service_healthy
