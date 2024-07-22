@@ -1,0 +1,12 @@
+### Generate upload URL
+POST http://{{host}}/images
+
+> {%
+  client.log(response.body.url)
+  client.global.set('upload-url', response.body.uploadUrl)
+%}
+
+### Upload image
+PUT {{upload-url}}
+
+< ../../picture.png
