@@ -3,8 +3,8 @@ import { ImageController } from './image.controller';
 import { ImagesService } from './images.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Image } from './image.entity';
-import { ImagesConsumer } from './images.consumer';
-import { BullModule } from '@nestjs/bull';
+import { ImagesProcessor } from './images.processor';
+import { BullModule } from '@nestjs/bullmq';
 import { AnimeModule } from '../anime/anime.module';
 
 @Module({
@@ -14,6 +14,6 @@ import { AnimeModule } from '../anime/anime.module';
     AnimeModule,
   ],
   controllers: [ImageController],
-  providers: [ImagesService, ImagesConsumer],
+  providers: [ImagesService, ImagesProcessor],
 })
 export class ImagesModule {}

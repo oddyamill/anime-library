@@ -10,6 +10,14 @@ import { ANILIST_URL, TRACE_MOE_URL } from '../constants';
 export class AnimeService {
   constructor(@InjectRepository(Anime) private repository: Repository<Anime>) {}
 
+  async getAll() {
+    return this.repository.find();
+  }
+
+  async getOne(id: number) {
+    return this.repository.findOne({ where: { id }, relations: ['images'] });
+  }
+
   async findOrCreate(anilistId: number) {
     const found = await this.repository.findOneBy({ anilistId });
     if (found !== null) {

@@ -1,4 +1,11 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  OneToMany,
+  JoinColumn,
+} from 'typeorm';
+import { Image } from '../images/image.entity';
 
 @Entity()
 export class Anime {
@@ -16,4 +23,7 @@ export class Anime {
 
   @Column()
   banner: string;
+
+  @OneToMany(() => Image, (image) => image.anime)
+  images: Image[];
 }

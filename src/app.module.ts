@@ -1,12 +1,10 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { ImagesModule } from './images/images.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { CdnModule } from './cdn/cdn.module';
 import { AnimeModule } from './anime/anime.module';
-import { BullModule } from '@nestjs/bull';
+import { BullModule } from '@nestjs/bullmq';
 
 @Module({
   imports: [
@@ -38,7 +36,7 @@ import { BullModule } from '@nestjs/bull';
     }),
     BullModule.forRootAsync({
       useFactory: (config: ConfigService) => ({
-        redis: {
+        connection: {
           host: config.get('REDIS_HOST', 'localhost'),
           port: config.get('REDIS_PORT', 6379),
         },
@@ -49,7 +47,5 @@ import { BullModule } from '@nestjs/bull';
     AnimeModule,
     ImagesModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {}
