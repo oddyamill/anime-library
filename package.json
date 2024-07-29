@@ -19,7 +19,7 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "docker": "docker compose up server --build --detach",
-    "docker:dev": "docker compose --file compose-dev.yaml up server --build"
+    "docker:dev": "docker compose --file compose.yaml --file compose-dev.yaml up server --build"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.614.0",
