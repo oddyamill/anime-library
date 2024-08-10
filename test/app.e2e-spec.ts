@@ -18,4 +18,11 @@ describe('AppModule (e2e)', () => {
   it('/ (GET)', () => {
     return request(app.getHttpServer()).get('/').expect(404);
   });
+
+  it('/images (GET)', () => {
+    return request(app.getHttpServer())
+      .get('/images')
+      .expect(200)
+      .then((response) => expect(Array.isArray(response.body)).toBe(true));
+  });
 });
