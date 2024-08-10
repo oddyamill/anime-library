@@ -1,14 +1,12 @@
 # syntax=docker/dockerfile:1
 
-ARG BUN_VERSION=1
+ARG BUN_VERSION=1.0.35
 
 FROM oven/bun:${BUN_VERSION}-alpine AS base
 
 WORKDIR /usr/src/app
 
 FROM base AS deps
-
-RUN apk add --no-cache libstdc++
 
 RUN --mount=type=bind,source=package.json,target=package.json \
   --mount=type=bind,source=package-lock.json,target=package-lock.json \
